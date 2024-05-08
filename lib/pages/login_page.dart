@@ -20,14 +20,19 @@ class LoginPage extends StatelessWidget {
 
     // try login
     try {
-      await authService.signWithEmailPassword(_emailController.text, _pwController.text,);
+      await authService.signWithEmailPassword(
+        _emailController.text,
+        _pwController.text,
+      );
     }
 
     // catch any errors
     catch (e) {
-      showDialog(context: context, builder: (context) => AlertDialog(
-        title: Text(e.toString()),
-      ))
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text(e.toString()),
+              ));
     }
   }
 
