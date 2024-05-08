@@ -1,7 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:chat_app/components/my_button.dart'; 
 import 'package:chat_app/components/my_textfield.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RegisterPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
