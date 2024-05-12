@@ -22,7 +22,7 @@ class AuthService {
   Future<UserCredential> signUpWithEmailPassword(String email, password) async {
     try {
       UserCredential userCredential =
-        await _auth.createUserWithEmailAndPassword(
+          await _auth.createUserWithEmailAndPassword(
           email: email, 
           password: password,
           );
@@ -32,7 +32,7 @@ class AuthService {
       throw Exception(e.code);
       } 
     }
-  }
+  
 
   // sign out
   Future<void> signOut() async {
