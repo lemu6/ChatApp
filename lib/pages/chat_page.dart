@@ -81,32 +81,56 @@ class ChatPage extends StatelessWidget {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
     // is current user
+    bool isCurrentUser = data['senderID'] == _authService.getCurrentUser()!.uid;
 
+    // align message to the rigth if sender is the current user, otherwise left
+    var alignment =
+        isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
 
-    // align message to the rigth if sender is the current user, otherwise left 
-    
-    return Text(data["message"]);
+    return Container(
+      alignment: alignment,
+      child: Column(
+        crossAxisAlignment:
+            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Text(data["message"]),
+        ],
+      ),
+    );
   }
 
   // build message input
   Widget _buildUserInput() {
-    return Row(
-      children: [
-        // textfield should take up most of the space
-        Expanded(
-          child: MyTextField(
-            controller: _messageController,
-            hintText: "Type a message",
-            obscureText: false,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: Row(
+        children: [
+          // textfield should take up most of the space
+          Expanded(
+            child: MyTextField(
+              controller: _messageController,
+              hintText: "Type a message",
+              obscureText: false,
+            ),
           ),
-        ),
 
-        // send button
-        IconButton(
-          onPressed: sendMessage,
-          icon: Icon(Icons.arrow_upward),
-        )
-      ],
+          // send button
+          Container(
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              shape: BoxShape.circle,
+            ),
+            margin: const EdgeInsets.only(right: 25),
+            child: IconButton(
+              onPressed: sendMessage,
+              icon: Icon(
+                Icons.arrow_upward,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
